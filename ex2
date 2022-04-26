@@ -1,0 +1,48 @@
+import numpy as np
+
+#Q1.1
+def half(x):
+    return x[::2,1::2]
+
+#Q1.2   n = y.size, m = x.size
+def outer_product(x,y):
+    #y.reshape(1,y.size)
+    res = np.matmul(x,y)
+    return res
+
+x = np.array([1,2,3,4,5])
+y = np.array([10,20,30])
+#print("XY= ", outer_product(x,y))
+
+#Q1.3
+def extract_logical(x, arr):
+    ind = np.array(arr.astype(int) == arr)
+    print(ind)
+
+    z = np.extract(ind, x)
+    print(z)
+
+    return z, ind
+
+
+# k = length of z
+# n = dimension of x
+def extract_integer(x, arr):
+    z, mask = extract_logical(x, arr)
+    indices = np.arange(len(arr)**arr.ndim).reshape(arr.shape)
+    print(indices)
+    k = z.size
+    n = x.ndim
+
+    ind = np.zeros(n*k).reshape(k,n)
+    print(ind)
+
+
+
+arr = np.array([[1.2, 1.3, 9],
+                [1.2, 1.3, 9],
+                [5, 1.3, 9]])
+
+print(extract_integer(arr, arr))
+
+
