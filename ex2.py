@@ -68,4 +68,33 @@ def det(A):
                  sum += (-1)**(i) * A[0,i] * det(newA)
    return sum
     
-
+#Q1.8----------------------------------------------------
+def checkInput(x):
+    if(x.ndim == 2):
+        mask = np.count_nonzero(x, axis=1)
+    else:
+        mask = np.count_nonzero(x, axis=2)
+   
+    mask = mask == 1
+    res = np.all(mask) 
+    #TD - chek if there are any pairs of 1,1 in the columnes of x (only for the robber)
+    
+    return res
+    
+    
+    
+    
+def linearville(robber, policeman):
+    if checkInput(robber) == False:
+        print("wrong input!")
+        return False
+    if checkInput(policeman) == False:
+        print("wrong input!")
+        return False
+    
+    total = robber.shape[0]*robber.shape[1] #depth * rows
+    mask = robber == policeman
+    checkRows = np.count_nonzero(mask,axis=2)
+    num_of_same_rows = np.sum(np.count_nonzero(checkRows, axis=1))
+    return (num_of_same_rows == total)
+   
