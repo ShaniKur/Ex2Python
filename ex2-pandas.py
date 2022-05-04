@@ -1,5 +1,7 @@
 from cmath import sqrt
+from numpy import float64
 import pandas as pd
+import numpy as np
 import string
 
 #Q2.2----------------------------------------------------
@@ -20,6 +22,13 @@ def partial_sum(s):
     res = res.sum()
     return sqrt(res)
 
+#Q2.6----------------------------------------------------
+def dropna_mta_style(df, how= "any" ):
+    res = df.dropna(axis = 0, how=how)
+    res2 = df.dropna(axis = 1, how=how)
+    return pd.DataFrame(res, columns=res2.columns)
 
+
+#Q2.8----------------------------------------------------
 
 
