@@ -79,9 +79,7 @@ def checkInput(x):
     res = np.all(mask) 
     #TD - chek if there are any pairs of 1,1 in the columnes of x (only for the robber)
     
-    return res
-    
-    
+    return res 
     
     
 def linearville(robber, policeman):
@@ -98,3 +96,43 @@ def linearville(robber, policeman):
     num_of_same_rows = np.sum(np.count_nonzero(checkRows, axis=1))
     return (num_of_same_rows == total)
    
+
+#       np.zeros(depth, rows, cols)
+robber = np.zeros((2, 2, 3),np.int32)
+# 2 days
+# 3 stores
+# 2 hours
+# first day - first hour
+robber[0][0][0] = 1
+robber[0][0][1] = 0
+robber[0][0][2] = 0
+# second hour
+robber[0][1][0] = 0
+robber[0][1][1] = 1
+robber[0][1][2] = 0
+
+# second day - first hour
+robber[1][0][0] = 1
+robber[1][0][1] = 0
+robber[1][0][2] = 0
+# second hour
+robber[1][1][0] = 0
+robber[1][1][1] = 1
+robber[1][1][2] = 0
+
+###########
+
+policeman = np.zeros((2, 3)).astype(int)
+# 3 stores
+# 2 hours
+# first hour
+policeman[0][0] = 0
+policeman[0][1] = 1
+policeman[0][2] = 0
+# second hour
+policeman[1][0] = 0
+policeman[1][1] = 0
+policeman[1][2] = 1
+
+check = np.ones((2), dtype=np.int32)
+print(linearville(robber,policeman))
