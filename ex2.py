@@ -54,6 +54,14 @@ def normalization(x, axis=0):
               norm.reshape(-1,1)
        return x/norm
    
+# Q1.5-------------------------------------------------------
+def matrix_norm(x, k=1000):
+    rand_matrix = np.random.randn(x.shape[0], k) #Draw a n×k matrix of random numbers from the N(0, 1) distribution
+    randm_normed =normalization(rand_matrix, axis=0) #Normalize the columns of X
+    z= x.dot(randm_normed) #Compute the matrix product Z=A×X
+    u=calc_norm(z) #Compute the norm of the columns of Z, denote by u
+
+    return u.max() #The maximal value of u is an approximation of the norm of A
 
 #Q1.6----------------------------------------------------
 def det(A):
