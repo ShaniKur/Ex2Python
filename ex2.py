@@ -76,6 +76,16 @@ def det(A):
                  sum += (-1)**(i) * A[0,i] * det(newA)
    return sum
     
+# Q1.7-------------------------------------------------------
+#Need to be checked
+def segment(im, thresh=128):
+    if (im > 1).any():
+        im_bw = im.mean(axis=2)
+        seg = np.where(im_bw < thresh, 0, 255)
+    else:
+        seg = np.where(im < thresh, 0, 255)
+    return seg
+    
 #Q1.8----------------------------------------------------
 def checkInput(x):
     if(x.ndim == 2):
@@ -103,6 +113,21 @@ def linearville(robber, policeman):
     checkRows = np.count_nonzero(mask,axis=2)
     num_of_same_rows = np.sum(np.count_nonzero(checkRows, axis=1))
     return (num_of_same_rows == total)
+
+# Q1.9----------------------------------------------------------------
+def is_magic(arr):
+    main_diagonal_sum = (np.diagonal(arr)).sum()
+    antidiagonal_sum= (np.diagonal(np.fliplr(arr))).sum()
+    rows_sum= np.sum(arr, axis=1)
+    cols_sum = np.sum(arr, axis=0)
+    if main_diagonal_sum != antidiagonal_sum :
+        return False
+    elif not np.all(rows_sum == main_diagonal_sum):
+        return False
+    elif not np.all(cols_sum == main_diagonal_sum):
+        return False
+    else:
+        return True
    
 
 #       np.zeros(depth, rows, cols)
