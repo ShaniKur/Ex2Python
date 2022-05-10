@@ -33,21 +33,17 @@ def dropna_mta_style(df, how= "any" ):
                     #Doesn't Work!!!
 
 def unique_dict(df, how="col"):
+    res={}
+    rengeSize = df.size
     
-    if how.lower() == "col":
-        frame = df.T
-    else:
-        frame = df
+    for i in range(rengeSize):
+        if(how.lower == 'col' and i < df.columns.size):
+            res[df.columns[i]]=dict( pd.Series( pd.unique( df[df.columns[i]].values) ) )
         
-    mask = frame.duplicated()
-    res = pd.DataFrame(frame).where(mask != False,other = NaN)
-    res = res.dropna()
+        elif(how.lower == 'row' and i < df.index.size):
+            res[df.index[i]]=dict( pd.Series( pd.unique( df.loc[df.index[i]].values) ) )
 
-    ans = {}
-    for i in res.index:
-        ans[i] = pd.Series(res.loc[i].values)
-        
-    return ans
+    return res
 
 
 data = {"age":[12,12,12,12],
@@ -55,13 +51,8 @@ data = {"age":[12,12,12,12],
 
 frame = pd.DataFrame(data, index=['a','b','c','d'])
 
-
-mask = frame.duplicated(keep=False)
-res = pd.DataFrame(frame).where(mask == False,other = NaN)
-res = res.dropna()
-
-print(mask)
-print(res)
+print(unique_dict(frame, "col"))
+print(unique_dict(frame, "row"))
 
 #Q2.10----------------------------------------------------
 def is_stable(marriage, men, wemen):
