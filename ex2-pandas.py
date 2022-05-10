@@ -32,6 +32,13 @@ def partial_sum(s):
     res = s.abs()
     res = res.sum()
     return sqrt(res)
+#Q2.5----------------------------------------------------
+def partial_eq(s1, s2):
+    s1_temp = s1[s1.notnull()]
+    s2_temp = s2[s2.notnull()]
+    temp1 = s1_temp + s2_temp - s2_temp
+    temp2 = s2_temp + s1_temp - s1_temp
+    return temp2[temp2.notnull()]==temp1[temp1.notnull()]
 
 #Q2.6----------------------------------------------------
 def dropna_mta_style(df, how= "any" ):
