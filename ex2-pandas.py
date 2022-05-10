@@ -22,6 +22,11 @@ def reindex_up_down(s):
     
     return temp
 
+#Q2.3----------------------------------------------------
+def no_nans_idx(s):
+    return pd.notnull(s)
+
+
 #Q2.4----------------------------------------------------
 def partial_sum(s):
     res = s.abs()
