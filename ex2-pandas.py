@@ -4,6 +4,12 @@ import pandas as pd
 import numpy as np
 import string
 
+#Q2.1---------------------------------------------------
+def three_x_plus_1(s):
+    s[s % 2 == 0] = s[s % 2 == 0]/2
+    s[s % 2 == 1] = 3*s[s % 2 == 1] + 1
+    return s
+
 #Q2.2----------------------------------------------------
 def reindex_up_down(s):
     temp = pd.Series(s.index)
