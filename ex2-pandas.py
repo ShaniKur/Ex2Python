@@ -4,6 +4,12 @@ import pandas as pd
 import numpy as np
 import string
 
+#Q2.1---------------------------------------------------
+def three_x_plus_1(s):
+    s[s % 2 == 0] = s[s % 2 == 0]/2
+    s[s % 2 == 1] = 3*s[s % 2 == 1] + 1
+    return s
+
 #Q2.2----------------------------------------------------
 def reindex_up_down(s):
     temp = pd.Series(s.index)
@@ -16,11 +22,23 @@ def reindex_up_down(s):
     
     return temp
 
+#Q2.3----------------------------------------------------
+def no_nans_idx(s):
+    return pd.notnull(s)
+
+
 #Q2.4----------------------------------------------------
 def partial_sum(s):
     res = s.abs()
     res = res.sum()
     return sqrt(res)
+#Q2.5----------------------------------------------------
+def partial_eq(s1, s2):
+    s1_temp = s1[s1.notnull()]
+    s2_temp = s2[s2.notnull()]
+    temp1 = s1_temp + s2_temp - s2_temp
+    temp2 = s2_temp + s1_temp - s1_temp
+    return temp2[temp2.notnull()]==temp1[temp1.notnull()]
 
 #Q2.6----------------------------------------------------
 def dropna_mta_style(df, how= "any" ):
