@@ -81,6 +81,11 @@ frame = pd.DataFrame(data, index=['a','b','c','d'])
 print(unique_dict(frame, "col"))
 print(unique_dict(frame, "row"))
 
+
+#Q2.9-----------------------------------------------------
+def upper(df):
+    return df.applymap((lambda s : s.upper() if(type(s)==str) else None))
+
 #Q2.10----------------------------------------------------
 def is_stable(marriage, men, wemen):
     res = True
