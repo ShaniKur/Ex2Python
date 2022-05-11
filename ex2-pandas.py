@@ -46,6 +46,15 @@ def dropna_mta_style(df, how= "any" ):
     res2 = df.dropna(axis = 1, how=how)
     return pd.DataFrame(res, columns=res2.columns)
 
+#Q2.7-----------------------------------------------------
+def get_n_largest(df, n=0, how='col'):
+  temp = np.array(df.values)
+  sorted_col = np.sort(temp, axis=0)
+  sorted_row = np.sort(temp, axis=1)
+  if how == 'col':
+    return pd.Series(sorted_col[df.index.size-1-n], index=df.columns)
+  elif how == 'row':
+    return pd.Series(sorted_row.T[df.columns.size-1-n], index=df.index)
 
 #Q2.8----------------------------------------------------
                     #Doesn't Work!!!
