@@ -32,6 +32,7 @@ def partial_sum(s):
     res = s.abs()
     res = res.sum()
     return sqrt(res)
+
 #Q2.5----------------------------------------------------
 def partial_eq(s1, s2):
     s1_temp = s1[s1.notnull()]
@@ -57,8 +58,6 @@ def get_n_largest(df, n=0, how='col'):
     return pd.Series(sorted_row.T[df.columns.size-1-n], index=df.index)
 
 #Q2.8----------------------------------------------------
-                    #Doesn't Work!!!
-
 def unique_dict(df, how="col"):
     res={}
     rengeSize = df.size
@@ -71,16 +70,6 @@ def unique_dict(df, how="col"):
             res[df.index[i]]=dict( pd.Series( pd.unique( df.loc[df.index[i]].values) ) )
 
     return res
-
-
-data = {"age":[12,12,12,12],
-        "name": ["ofir","amit","nofar","nofar"]}
-
-frame = pd.DataFrame(data, index=['a','b','c','d'])
-
-print(unique_dict(frame, "col"))
-print(unique_dict(frame, "row"))
-
 
 #Q2.9-----------------------------------------------------
 def upper(df):
