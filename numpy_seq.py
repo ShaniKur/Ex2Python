@@ -1,3 +1,9 @@
+# Name of student 1: Shani Kurlyand
+# ID of student 1: 208540286
+
+# Name of student 2: Ofir Nakdai
+# ID of student 2: 318382827
+
 import numpy as np
 
 #Q1.1--------------------------------------------------
