@@ -1,3 +1,9 @@
+# Name of student 1: Shani Kurlyand
+# ID of student 1: 208540286
+
+# Name of student 2: Ofir Nakdai
+# ID of student 2: 318382827
+
 from cmath import sqrt
 from numpy import float64
 import pandas as pd
@@ -32,6 +38,7 @@ def partial_sum(s):
     res = s.abs()
     res = res.sum()
     return sqrt(res)
+
 #Q2.5----------------------------------------------------
 def partial_eq(s1, s2):
     s1_temp = s1[s1.notnull()]
@@ -46,9 +53,21 @@ def dropna_mta_style(df, how= "any" ):
     res2 = df.dropna(axis = 1, how=how)
     return pd.DataFrame(res, columns=res2.columns)
 
+#Q2.7-----------------------------------------------------
+def get_n_largest(df, n=0, how='col'):
+  temp = np.array(df.values)
+  sorted_col = np.sort(temp, axis=0)
+  sorted_row = np.sort(temp, axis=1)
+  if how == 'col':
+    return pd.Series(sorted_col[df.index.size-1-n], index=df.columns)
+  elif how == 'row':
+    return pd.Series(sorted_row.T[df.columns.size-1-n], index=df.index)
 
 #Q2.8----------------------------------------------------
+<<<<<<< HEAD:ex2-pandas.py
 
+=======
+>>>>>>> 043632036f571b885ecc2a83c3a785a4a335c69f:pandas_seq.py
 def unique_dict(df, how="col"):
     res={}
     rengeSize = df.size
@@ -62,14 +81,9 @@ def unique_dict(df, how="col"):
 
     return res
 
-
-data = {"age":[12,12,12,12],
-        "name": ["ofir","amit","nofar","nofar"]}
-
-frame = pd.DataFrame(data, index=['a','b','c','d'])
-
-print(unique_dict(frame, "col"))
-print(unique_dict(frame, "row"))
+#Q2.9-----------------------------------------------------
+def upper(df):
+    return df.applymap((lambda s : s.upper() if(type(s)==str) else None))
 
 #Q2.10----------------------------------------------------
 def is_stable(marriage, men, wemen):
@@ -88,5 +102,5 @@ def is_stable(marriage, men, wemen):
 
 def stable_marriage(dames, gents, marriages):
     mask = [is_stable(x,gents, dames) for x in marriages]
-    return mask.all()
+    return all(mask)
 
