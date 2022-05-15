@@ -102,5 +102,5 @@ def is_stable(marriage, men, wemen):
 
 def stable_marriage(dames, gents, marriages):
     mask = [is_stable(x,gents, dames) for x in marriages]
-    return all(mask)
+    return mask.all()
 
