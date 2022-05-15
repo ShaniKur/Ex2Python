@@ -94,7 +94,7 @@ def checkInput(x):
         mask = np.count_nonzero(x, axis=2)
    
     mask = mask == 1
-    res = np.all(mask) 
+    res = mask.all() 
     #TD - chek if there are any pairs of 1,1 in the columnes of x (only for the robber)
     
     return res 
@@ -122,9 +122,9 @@ def is_magic(arr):
     cols_sum = np.sum(arr, axis=0)
     if main_diagonal_sum != antidiagonal_sum :
         return False
-    elif not np.all(rows_sum == main_diagonal_sum):
+    elif not (rows_sum == main_diagonal_sum).all():
         return False
-    elif not np.all(cols_sum == main_diagonal_sum):
+    elif not (cols_sum == main_diagonal_sum).all():
         return False
     else:
         return True
